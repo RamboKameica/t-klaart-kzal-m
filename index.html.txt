@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Berat ❤️ Büşra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+height:100vh;
+background:url("arka.jpg") center/cover no-repeat;
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
+}
+.overlay{
+position:absolute;inset:0;
+background:rgba(0,0,0,.55)
+}
+.top{
+position:absolute;top:20px;width:100%;
+text-align:center;color:#fff;
+font-size:26px;font-weight:bold
+}
+.center{
+position:absolute;top:38%;width:100%;
+text-align:center;
+font-size:44px;
+color:#ffb6c1;
+text-shadow:0 0 20px #ff4f7b;
+animation:pulse 2s infinite
+}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.1)}
+100%{transform:scale(1)}
+}
+.bottom{
+position:absolute;bottom:25px;width:100%;
+text-align:center;color:#fff;
+font-size:17px;padding:0 20px
+}
+.heart{
+position:absolute;font-size:24px;
+animation:fly 1.6s forwards;
+user-select:none
+}
+@keyframes fly{
+0%{opacity:1;transform:scale(1) translateY(0)}
+100%{opacity:0;transform:scale(1.8) translateY(-150px)}
+}
+.word{
+position:absolute;color:#fff;
+font-size:16px;
+animation:fade 2s forwards
+}
+@keyframes fade{
+to{opacity:0}
+}
+
+/* GÜL YAPRAĞI */
+.rose{
+position:absolute;
+top:-50px;
+font-size:24px;
+animation:fall linear forwards;
+}
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+/* MESAJ KUTUSU */
+.popup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:10
+}
+.popup-box{
+background:#300;
+color:#fff;
+padding:25px;
+border-radius:16px;
+max-width:300px;
+text-align:center;
+box-shadow:0 0 20px #ff4f7b
+}
+.popup-box button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#ff4f7b;
+color:#fff;
+font-size:16px;
+cursor:pointer
+}
+</style>
+</head>
+<body>
+
+<audio id="music" src="muzik.mp3" loop></audio>
+
+<div class="overlay"></div>
+<div class="top">Berat ❤️ Büşra</div>
+<div class="center">Seni Seviyorum</div>
+<div class="bottom">
+Kalbim hep seninle…<br>
+Bir şans daha istiyorum 🌹
+</div>
+
+<!-- MESAJ -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h3>Sana Bir Şey Demek İstiyorum 💌</h3>
+    <p>
+      Hatalarım oldu ama sevgim hiç azalmadı.<br>
+      Sensiz eksik kaldım…
+    </p>
+    <button onclick="startLove()">Devam Et ❤️</button>
+  </div>
+</div>
+
+<script>
+const words=[
+"Seni Çok Seviyorum ❤️",
+"Kalbim Sen 💘",
+"Vazgeçemem",
+"Bir Şans Daha 🙏",
+"Ben Hep Buradayım"
+];
+
+function startLove(){
+document.getElementById("popup").style.display="none";
+document.getElementById("music").play();
+}
+
+// KALP + SÖZ
+document.addEventListener("click",e=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerText="❤️";
+h.style.left=e.clientX+"px";
+h.style.top=e.clientY+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),1600);
+
+let w=document.createElement("div");
+w.className="word";
+w.innerText=words[Math.floor(Math.random()*words.length)];
+w.style.left=(e.clientX-30)+"px";
+w.style.top=(e.clientY-50)+"px";
+document.body.appendChild(w);
+setTimeout(()=>w.remove(),2000);
+});
+
+// GÜL YAĞMURU
+setInterval(()=>{
+let r=document.createElement("div");
+r.className="rose";
+r.innerText="🌹";
+r.style.left=Math.random()*100+"vw";
+r.style.animationDuration=3+Math.random()*3+"s";
+document.body.appendChild(r);
+setTimeout(()=>r.remove(),6000);
+},400);
+</script>
+
+</body>
+</html>
